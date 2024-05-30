@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="76x76" href="#">
+    <link rel="icon" type="image/png" href="#">
+    <title> Login </title>
+    <!-- Extra details for Live View on GitHub Pages -->
+    <!--  Social tags      -->
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <!--     Fonts and icons     -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet"/>
+    <!-- Nucleo Icons -->
+    <link href="{% static 'css/nucleo-icons.css' %}" rel="stylesheet"/>
+    <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet"/>
+    <!-- Font Awesome Icons -->
+    <!--    <script src="../../../../kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>-->
+    <link href="{% static 'css/nucleo-svg.css' %}" rel="stylesheet"/>
+    <!-- CSS Files -->
+    <link id="pagestyle" href="{% static 'css/soft-ui-dashboard.minf2ad.css' %}" rel="stylesheet"/>
+    <link id="pagestyle1" href="{% static 'css/style.css' %}" rel="stylesheet"/>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+</head>
+
+<style>
+  body,
+  button {
+    font-family: 'Poppins', sans-serif;
+  }
+
+
+</style>
+
+<body class="g-sidenav-show min-vh-100" id="permissions" style="">
+<!-- <span class="mask custom_bg_gradient opacity-6"></span> -->
+
+<span></span>
+<div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="col-xl-4 col-lg-4 col-md-8 col-sm-12 col-xs-12 mx-2 px-0">
+        <div class="card login-card z-index-0" style="box-shadow: rgba(34, 33, 33, 0.15) 0px 5px 15px;">
+            <div class="d-flex justify-content-center pt-2">
+                <a href="#" class="d-flex align-items-center w-auto">
+                    <img id="myImage" src="#" alt="">
+                </a>
+            </div>
+            <img src="{% static 'images/logo.png' %}" alt="" height="225px">
+<!--            <div class="text-center pt-2">-->
+<!--                <h3>Login</h3>-->
+<!--            </div>-->
+            <div class="card-body">
+                <form role="form text-left" action="#" method="post" autocomplete="off" class="login">
+                    {% csrf_token %}
+                    <div>
+                        <label>Username</label>
+                    </div>
+                    <div class="mb-2" style="margin-bottom:-100px;">
+                        <input type="text" class="form-control" name="username">
+                    </div>
+                    <!-- <br> -->
+                    <div>
+                        <label>Password</label>
+                    </div>
+                    <div class="mb-4" type="password">
+                        <input type="password" class="form-control" name="password">
+                    </div>
+
+                    <div class="CTA">
+                        <button name="login" class="btn btn_bg w-100 font-weight-bold mt-2 ">Login</button>
+                    </div>
+                    <!--                    <p class="m-2" style="font-size: .8em;">Forgot Password?&nbsp;<a class="reset_link" href="#">Reset Password</a>-->
+                    <!--                    </p>-->
+                    <br>
+                    <div class="d-flex flex-column justify-content-center align-items-center" style="color: red;">
+                        <p><small>{{msg}}</small></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--   Core JS Files   -->
+<script src="{% static 'js/core/popper.min.js' %}"></script>
+<script src="{% static 'js/core/bootstrap.min.js' %}"></script>
+<script src="{% static 'js/plugins/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'js/plugins/smooth-scrollbar.min.js' %}"></script>
+<script>
+      var win = navigator.platform.indexOf('Win') > -1;
+      if (win && document.querySelector('#sidenav-scrollbar')) {
+        var options = {
+          damping: '0.5'
+        }
+        Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+      }
+
+
+</script>
+<!-- Github buttons -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
+<!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="{% static 'js/soft-ui-dashboard.minf2ad.js' %}"></script>
+</body>
+<!--  <script>-->
+<!--    window.location.hash = "";-->
+<!--    window.location.hash = "";-->
+<!--    window.onhashchange = function () {-->
+<!--      window.location.hash = "";-->
+<!--    }-->
+<!--  </script>-->
+
+
+</html>

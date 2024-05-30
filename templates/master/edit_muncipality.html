@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="mt-5 pt-3">
+    <div class="container-fluid">
+        <div class="row text-center text-capitalize fw-bold add-products-details-heaing">
+            <h3>Edit Muncipality</h3>
+        </div>
+        <form enctype="multipart/form-data" role="form" method="post"
+              class="row g-3 shadow border border-radius-xl m-auto px-2 mx-2 mb-5 pb-3 pt-2 border-light
+            text-secondary form-letter">
+            {% csrf_token %}
+          
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Name</label>
+                    {{ form.name }}
+                   
+                   
+                </div>
+            </div>
+
+
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Phone</label>
+                    {{ form.Phone }}
+                    {{ form.Phone.errors }}
+                   
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Email</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                  
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Usename</label>
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                  
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Password</label>
+                    <input class="form-control" type="text" value={{rec.password}} name="new_pass_name">
+                </div>
+            </div
+            
+
+
+             class="col-md-6">
+                <!-- <div class="form-group required">
+                    <label class='control-label'>Password</label>
+                    <input class="form-control" type="text" value={{rec.branch_password}} name="new_pass_name">
+                </div>
+            </div> -->
+
+         
+
+            <div class="col-12 text-end mt-5">
+                <input type="submit" class="btn add-button btn-sm shadow me-2 mb-2" value="Submit">
+                <input type="button" class="btn back-button btn-sm me-md-2 shadow mb-2"
+                       value="Back" onClick="javascript:history.go(-1);">
+                <a class="btn back-button btn-sm me-md-2 shadow mb-2"
+                   href="{% url 'home' %}"> Back to Dashboard </a>
+            </div>
+        </form>
+    </div>
+</main>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

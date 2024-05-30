@@ -1,0 +1,1030 @@
+/* Custom Styles */
+
+
+
+/*this body style is added b ss */
+body{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    overflow-x: hidden !important;
+}
+
+/* end of body styling added by ss */
+
+
+.bg_off_blue_100 {
+    background-color: #eef5fc !important;
+}
+
+.navbar-vertical .navbar-nav .nav-link .icon {
+    background-color: #28553d;
+}
+
+.custom_bg {
+    background-color: #27553d;
+}
+
+.custom_bg_text {
+    color: #27553d;
+}
+
+.table_head i {
+    color: #27553d;
+}
+
+.progress_bar_bg {
+    background-image: linear-gradient(310deg, #27553d, #669f83);
+}
+
+.ta_center {
+    text-align: center !important;
+}
+
+.font_xs {
+    font-size: 12px;
+}
+
+.scroll_hide {
+    overflow: hidden !important;
+}
+
+.sidebar_bg {
+    background-color: #D2E4D6 !important;
+    box-shadow: 18px 0px 35px 0px rgb(0 0 0 / 2%);
+}
+
+.top_navbar {
+    background: none;
+    border-bottom: 1px solid #28553d;
+    border-radius: 0;
+}
+
+.btn_bg {
+    background-color: #3a87c5;
+    color: #fff;
+}
+
+.btn_bg:hover {
+    background-color: #007FFF;
+    color: #fff;
+}
+
+.btn_bg:active {
+    background-color: #28553d;
+}
+
+.btn_bg:focus {
+    background-color: #28553d;
+}
+
+
+.btn_bg_red {
+    background-color: #D2042D;
+    color: #fff;
+}
+
+.btn_bg_red:hover {
+    background-color: #D2042D;
+    color: #fff;
+}
+
+.btn_bg_red:active {
+    background-color: #D2042D;
+}
+
+.btn_bg_red:focus {
+    background-color: #D2042D;
+}
+
+.btn_view_bg {
+    background-color: #219653;
+    color: #fff;
+}
+
+.btn_view_bg:hover {
+    background-color: #2bc155;
+    color: #fff;
+}
+
+.btn_edit_bg {
+    background-color: #56ccf2;
+    color: #fff;
+}
+
+.btn_edit_bg:hover {
+    background-color: #03a9f4;
+    color: #fff;
+}
+
+.btn_del_bg {
+    background-color: #dd3030;
+    color: #fff;
+}
+
+.btn_del_bg:hover {
+    background-color: #f72b50;
+    color: #fff;
+}
+
+.btn_download_bg {
+    background-color: #f7d045;
+    color: #000;
+}
+
+.btn_download_bg:hover {
+    background-color: #ffd747;
+    color: #000;
+}
+
+.btn_history_bg {
+    background-color: #4C84A2;
+    color: #fff;
+}
+
+.btn_history_bg:hover {
+    background-color: #00557D;
+    color: #fff;
+}
+
+.btn_panel_bg {
+    background-color: #9CB0A4;
+    color: #000;
+}
+
+.btn_panel_bg:hover {
+    background-color: #b8ccc0;
+    color: #000;
+}
+
+.btn_common_bg {
+    background-color: #817919;
+    color: #fff;
+}
+
+.btn_common_bg:hover {
+    background-color: #B9AD4E;
+    color: #fff;
+}
+
+.custom_bg_gradient {
+    background-image: linear-gradient(310deg, #141727, #3d6f3a);
+}
+
+.box_title {
+    padding: 1.5em 1em !important;
+}
+
+.cred_field:focus {
+    border-color: #f3e482 !important;
+    box-shadow: 0 0 0 2px #f3e482 !important;
+}
+
+.card_green_bg_100 {
+    background-color: #f8f9fa !important;
+}
+
+.emer_call_label {
+    color: #f72b50;
+}
+
+input.todo-input {
+    border: 1px solid #d2d6da;
+    border-radius: .5rem 0 0 .5rem;
+    color: #495057;
+    padding: 0.1rem 0.5rem;
+}
+
+input.todo-input:focus-visible {
+    border: 1px solid #d2d6da !important;
+}
+
+button.todo-button {
+    border: 1px solid #d2d6da;
+    border-radius: 0 .5rem .5rem 0;
+    color: #495057;
+    padding: 0.1rem 0.5rem;
+}
+
+button.todo-button:hover {
+    background-color: #28553d;
+    color: #fff;
+}
+
+select.filter-todo {
+    border: 1px solid #d2d6da !important;
+    color: #344767;
+}
+
+div.select::after {
+    border: 1px solid #d2d6da;
+    background: #d2e4d6 !important;
+    color: rgb(84 163 132);
+}
+
+button.complete-btn {
+    color: #28553d !important;
+    background: none !important;
+}
+
+button.trash-btn {
+    background: none !important;
+    color: #495057;
+}
+
+/* div.select:hover{
+    color: #28553d !important;
+} */
+.doc_name {
+    font-size: 0.95rem;
+    font-weight: normal !important;
+}
+
+.sidenav-normal.active {
+    color: #006f84;
+}
+
+/* Todo List css */
+
+.todo_card {
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.todo_card input,
+.todo_card button {
+    padding: 0.5rem;
+    font-size: 2rem;
+    border: 1px solid #d2d6da;
+    background: white;
+}
+
+
+.todo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-list {
+    min-width: 100%;
+    list-style: none;
+}
+
+.todo {
+    margin: 0.5rem;
+    background: white;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s ease;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.todo li {
+    flex: 1;
+}
+
+.trash-btn,
+.complete-btn {
+    background: #ff6f47;
+    color: white;
+    border: none;
+    padding: 1rem;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.complete-btn {
+    background: rgb(73, 204, 73);
+}
+
+.todo-item {
+    padding: 0.5rem;
+}
+
+.fa-check,
+.fa-trash {
+    pointer-events: none;
+}
+
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.fall {
+    transform: translateY(8rem) rotateZ(20deg);
+    opacity: 0;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    border: none;
+}
+
+.select {
+    margin: 1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+select {
+    color: #ff6f47;
+    width: 10rem;
+    cursor: pointer;
+    padding: 1rem;
+}
+
+.select::after {
+    content: "\25BC";
+    position: absolute;
+    background: #ff6f47;
+    top: 0;
+    right: 0;
+    padding: 1rem;
+    pointer-events: none;
+    transition: all 0.3s ease;
+}
+
+.select:hover::after {
+    background: white;
+    color: #ff6f47;
+}
+
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fdf8f9 !important;
+    background-color: #28553d !important;
+    border-color: #28553d !important;
+}
+
+.page-link {
+    border: none !important;
+}
+
+li#dataTable_previous.paginate_button.page-item.previous.disabled {
+    padding: 0 1rem !important;
+}
+
+li#dataTable_previous.paginate_button.page-item.previous {
+    padding: 0 1rem !important;
+}
+
+li#dataTable_next.paginate_button.page-item.next {
+    padding: 0 1rem !important;
+}
+
+li#tbl_orders_first.paginate_button.page-item.first.disabled {
+    padding: 0 1rem !important;
+    display: none;
+}
+
+li#tbl_orders_last.paginate_button.page-item.last.disabled {
+    padding: 0 1rem !important;
+    display: none;
+}
+
+li#tbl_orders_previous.paginate_button.page-item.previous.disabled {
+    padding: 0 1rem !important;
+}
+
+li#tbl_orders_first.paginate_button.page-item.first {
+    padding: 0 1rem !important;
+    display: none;
+}
+
+li#tbl_orders_last.paginate_button.page-item.last {
+    padding: 0 1rem !important;
+    display: none;
+}
+
+a.btn_bg {
+    background-color: #28553d !important;
+    color: #fff !important;
+}
+
+button#one.btn.btn_bg {
+    background-color: #28553d;
+    color: #fff;
+}
+
+input.btn.btn_bg {
+    background-color: #28553d;
+    color: #fff;
+}
+
+
+
+td {
+    border: 0.1px solid rgb(218, 210, 210) !important;
+}
+
+th {
+    border: 0.1px solid  rgb(218, 210, 210) !important;
+}
+
+.text_head_black {
+    font-weight: 800;
+    color:gray;
+}
+
+.text_label_black {
+    color: gray !important;
+}
+
+.text_subhead_black {
+    color: gray;
+}
+
+.footer_box {
+    flex-shrink: 0;
+    text-align: center;
+}
+
+.screen_box {
+    flex: 1 0 auto;
+}
+
+.main_screen_box {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.quiz_progress {
+    display: none !important;
+}
+
+.quiz_name {
+    text-align: center;
+    font-weight: 600;
+}
+
+.start_btn {
+    text-transform: none !important;
+    font-weight: 600 !important;
+}
+
+.quest_count {
+    color: #27553d;
+}
+
+.ans_card {
+    background-color: #f5f5f5;
+    border-radius: 50px;
+}
+
+.ans_tab {
+    font-size: 0.95rem !important;
+}
+
+.result_head {
+    font-size: 0.95rem !important;
+    font-weight: 900;
+    text-align: center;
+}
+
+.score_label {
+    font-weight: 300;
+    font-size: 16px;
+}
+
+.try_btn_bg {
+    border: 1px solid #27553d !important;
+    background-color: transparent !important;
+    color: rgb(14, 14, 14) !important;
+}
+
+.fail_bg {
+    background-color: #e4d2d2;
+}
+
+.no_left {
+    padding-left: 0 !important;
+}
+
+.ans_filter_correct_card {
+    background-color: #d2e4d6;
+}
+
+.ans_filter_card {
+    background-color: #f5f5f5;
+}
+
+.form_boundary {
+    border: 1px solid #27553d;
+}
+
+.quiz-button {
+    display: flex;
+    justify-content: center;
+}
+
+.section-menu {
+    color: #28553d !important;
+    font-weight: 600 !important;
+}
+
+th.heading_width {
+    width: 0;
+    padding: 5px;
+    white-space: break-spaces;
+}
+
+/* bijoy */
+.reset_link{
+    color: #3a87c5;
+    font-size: 12px;
+}
+
+.reset_link:hover{
+    color: #007FFF;
+}
+
+                 /* ----------added style by ss-----------*/
+
+
+
+/* style to accounts list in side bar to fix that at the bottom of side bar   */
+
+
+.fixed-bottoms{
+    position: relative;
+    bottom: 0;
+    
+    
+  }
+  
+
+/* hover effect to the sidebar items */
+
+.navbar-nav-side li:hover{
+    background-color: #f5f8f8 ;
+    border-bottom: 2px solid white;
+    border-left: 2px solid white;
+    
+}
+.navbar-nav-side li .collapse ul li:hover{
+    background-color:rgb(238, 237, 237) ;
+    border: 2px solid white;
+}
+
+/* bg of side nav */
+
+.sidebar_bg {
+    background-color: rgb(238, 237, 237) !important;
+    box-shadow: 18px 0px 35px 0px rgb(0 0 0 / 2%);
+}
+/* trying to avoid the overlapping of account section in sidebar bottom */
+#accounts{
+    z-index: 9999;
+    
+}
+
+/* vertical navbar icon bg change  */
+.navbar-vertical .navbar-nav .nav-link .icon {
+    background-color: rgb(68, 66, 66) !important;
+}
+
+/* side bar nav link text color change  */
+.navbar-vertical .navbar-nav .nav-link {
+    padding-left: 0.6rem;
+    padding-right: 0.8rem;
+    font-weight: 500;
+    color: rgb(68, 66, 66) !important;
+}
+/*change the color of notification badge */
+.bg-badge{
+    background-color: rgb(212, 73, 73);
+}
+
+
+/* chabge the color of border bottom of top navbar */
+.top_navbar {
+    
+    border-bottom: 1px solid rgb(202, 198, 198) !important;
+    
+}
+.add-button {
+    background-color: #17B169;
+    color: white;
+}
+/* data table heading color change  */
+.datatable-heading{
+color: gray;
+}
+
+/* add button styling */
+
+
+.add-button-table {
+    background-color: #ffffff !important;
+    color: gray !important;
+    border: solid 1px rgb(190, 183, 183) !important ;
+    box-shadow: none !important;
+    
+    
+
+  }
+
+  .add-button-table:hover {
+    background-color: #29b76c !important;
+    color: white !important;
+    border: solid 1px white !important;
+    
+    
+  }  
+
+/*------------edit button styling -----------------*/
+
+.edit-button{
+    background-color: #ffffff !important;
+    color: gray !important;
+    border: solid 1px rgb(190, 183, 183) !important ;
+    box-shadow: none !important;
+    
+
+}
+
+.edit-button:hover {
+    background-color: #FFC72C !important;
+    color: white !important;
+    border: solid 1px white !important;
+    
+  }  
+
+/*------------delete button table styling -----------------*/
+
+.delete-button-table{
+    background-color: #ffffff !important;
+    color: gray !important;
+    border: solid 1px rgb(190, 183, 183)  !important ;
+    box-shadow: none !important;
+    
+}
+
+.delete-button-table:hover {
+    background-color: #E52B50 !important;
+    color: white !important;
+    border: solid 1px white !important;
+    
+  }  
+
+/* delete button in popup styling  */
+
+  .delete-button{
+    background-color:#f05675 !important ;
+    color: white !important;
+  }
+
+  .delete-button:hover {
+    background-color: #E52B50 !important;
+    color: white;
+    border: none;
+    transition: 0.5s;
+    border-color: white;
+  }
+
+
+
+  /* card header product details  */
+
+  .card-header-product-details h4{
+    color: gray !important;
+  }
+  .card-header-product-details{
+    height: 35px;
+  }
+
+
+  /*   product table letter color styling   */
+ .product-table td{
+    color: gray;
+    
+    
+ }
+
+ /* form letter color  */
+ .form-letter .form-label{
+    color: gray !important;
+ }
+
+ .add-products-details-heaing h3{
+    color: gray !important;
+ }
+
+/* data table pagination color  */
+.page-item.active .page-link {
+    z-index: 3;
+    color: #fdf8f9 !important;
+    background-color: gray !important;
+    border-color: rgb(92, 90, 90) !important;
+}
+
+
+/* side bar collapse icon color change  */
+.navbar-vertical .navbar-nav .nav-link[data-bs-toggle=collapse][aria-expanded=true]:after {
+    color: #828282 !important;
+    transform: rotate(180deg);
+}
+.navbar-vertical .navbar-nav .nav-link[data-bs-toggle=collapse]:after {
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    font-family: Font Awesome\ 5 Free;
+    font-weight: 700;
+    content: "\f107";
+    margin-left: auto;
+    color: #828282 !important;
+    transition: all .2s ease-in-out;
+}
+
+@media screen and (max-width: 540px) {
+    .login-card{
+        min-width: 85vw;
+    }
+    }
+
+
+   /* product details table styling */
+
+    .table-product-details td{
+       
+        border-left: hidden !important;
+        border-right: hidden !important;
+       
+    }
+
+    .table-product-details{
+       
+        border: 2px solid rgb(231, 231, 231) !important;
+       
+    }
+
+    /* data table button styling and mediaquery */
+
+     .data-table-1 .btn{
+        padding-left: 18px;
+        padding-right: 18px;
+
+    }
+    .left-column{
+        padding-right: 0px;
+        padding-left: 22px;
+    }
+    .right-column{
+        padding-left:0px ;
+        padding-right:22px ;
+    }
+
+
+/* tabs color change  + size change*/
+
+.tabs{
+    color: grey;
+    font-size: medium;
+    font-weight: bold;
+}
+.tabs:hover{
+    color: grey;
+    background-color: rgb(238, 237, 237);
+}
+
+
+ .nav-tabs .nav-link.active {
+    color: #898d90;
+    background-color: #fff;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.count-card{
+    background-color: rgb(228, 228, 228) ;
+    color: gray;
+    border: 5px solid #fff;
+   
+    
+}
+
+.card-count{
+    color: rgb(105, 105, 107);
+}
+.card-p{
+    background-color:  #fff ;
+    border-radius: 20px;
+    
+}
+.counter-round-cad-icon{
+    color: #959597;
+}
+.card-rectangular{
+    background-color:rgb(228, 228, 228) ;
+    border: 5px solid #fff;
+   
+}
+
+.rectangular-card{
+    border-radius: 3rem; 
+}
+/* cards icons and card description colouring*/
+.dues{
+    background-color: rgb(226, 176, 176);
+    color: white;
+    border: 2px solid #fff;
+} 
+
+.dues-icon{
+    color: rgb(219, 125, 125) ;
+}
+
+.collections{
+    background-color: rgb(179, 193, 196);
+    color: white;
+    border: 2px solid #fff;
+
+}
+.collections-icon{
+    color: rgb(131, 155, 160);
+}
+.delivered{
+    background-color: rgb(157, 192, 165);
+    color: white;
+    border: 2px solid #fff;
+}
+.delivered-icon{
+    color:rgb(126, 148, 131) ;
+}
+
+.intransit{
+    background-color: #959597;
+    color: white;
+    border: 2px solid #fff;
+}
+.bar-card{
+    margin: 50px 0px ;
+}
+
+
+/*chart styling */
+.chartbg{
+    background-color:rgb(228, 228, 228) ;
+    border: 5px solid #fff;
+}
+
+.heading-order-statistic{
+    color: rgb(113, 118, 119);
+    background-color:rgb(228, 228, 228) ;
+    border: 5px solid #fff;
+    padding: 5px 20px;
+    border-radius: 20px;
+    
+}
+
+.card-table td {
+    border: 0.1px solid #f8f9fa!important;
+}
+
+.card-table th {
+    border: 0.1px solid #f8f9fa!important;
+}
+.table-card-badge{
+    background-color: #7b7e8a;
+    color: white;
+    border: 2px solid #fff;
+    font-size: small;
+   
+}
+.table-h5-card{
+    background-color:rgb(228, 228, 228) ;
+    border: 5px solid #fff;
+}
+
+.table3-card-count{
+    background-color: #959597;
+    color: white;
+    border: 2px solid #fff;
+    width: 50%;
+    
+    border-radius: 4rem;
+}
+
+.table2-card-count{
+    background-color: rgb(131, 155, 160);
+    color: white;
+    border: 2px solid #fff;
+    width: 50%;
+    
+    border-radius: 4rem;
+}
+.summary-card{
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+    padding-left: 0px !important;
+    padding-right: 0px !important;
+
+}
+    
+.table-1-p{
+    margin-top: 8px;
+}
+
+.table1-card-count{
+    background-color: #acacac;
+    color: white;
+    border: 2px solid #fff;
+    border-radius:10px ;
+}
+
+.table-summary-card{
+    background-color: rgb(228, 228, 228);
+    color: rgb(128, 128, 134);
+    border: 5px solid #fff;
+    
+}
+
+.three-tables-head{
+    color: gray;
+}
+
+.tab-icon{
+    background-color: rgb(161, 150, 150);
+    padding: 8px;
+    
+    border-radius: 6px;
+    color:#fff;
+}
+.tab-icon:hover{
+    transform: rotate(15deg);
+}
+
+.summary-table1-icons:hover{
+    transform: rotate(15deg);
+}
+.border-top-icon{
+    background-color:rgb(228, 228, 228) ;
+    padding: 6px 10px;
+    border-radius: 3rem;
+    border: 5px solid #fff;
+   
+}
+.count-inner-shadow{
+    box-shadow: inset 3px 4px 5px rgb(175, 175, 175);
+}
+.bg-pill{
+    background-color: #f4fff9;
+}
+
+.fade-bg-icon{
+    font-size: 100px;
+    color: rgb(215, 217, 219) !important;
+    
+    
+}
+.overlay-the-icon{
+    z-index: 1;
+}
+.second-column-card-text{
+    color:rgb(133, 129, 129);
+    
+    font-weight: bolder;
+   
+}
+.icon-size-bg{
+    font-size: 150px;
+}
+
+/* added by ss on 11.09.2023 */
+.summary-ul li{
+    background-color: rgb(228, 228, 228);
+    color: rgb(128, 128, 134);
+    font-weight: bold;
+}
+.summary-ul li .badge{
+    font-size: medium;
+}
+
+.list-group-item {
+    position: relative;
+    display: block;
+    padding: 0.5rem 1rem;
+    color: inherit;
+    background-color: #fff;
+    border: 5px solid white;
+}
+/*
+.bg-dark-gray{
+    background-color: rgb(209, 206, 206);
+}
+*/
+.this-month-card{
+    border-radius: 150px !important;
+}

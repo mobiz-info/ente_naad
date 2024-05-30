@@ -1,0 +1,257 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<script>
+    $(document).ready(function () {
+      $('select').css('color', '#000000');
+      document.querySelector('input[type="text"]').style.color = "#000000";
+    });
+
+
+
+</script>
+
+
+<style>
+    .view-but-div {
+      padding: 0 10% 0 0;
+    }
+
+    .view-button:hover {
+      background-color: #17B169;
+      border: none;
+      transition: .5s;
+      border-color: white;
+    }
+
+    .edit-button:hover {
+      background-color: #FFC72C;
+      border: none;
+      transition: .5s;
+      border-color: white;
+    }
+
+
+    .delete-button:hover {
+      background-color: #E52B50;
+      border: none;
+      transition: .5s;
+      border-color: white;
+    }
+
+
+    .add-button {
+      background-color: #17B169;
+      color: white;
+
+    }
+
+    .add-button:hover {
+      background-color: #29b76c;
+      color: white;
+
+    }
+
+    .back-button {
+      background-color: #3a87c5;
+      border: none;
+      color: white;
+    }
+
+    .back-button:hover {
+      background-color: #007FFF;
+      border: none;
+      color: white;
+    }
+
+    .table-card {
+      font-size: .9em;
+    }
+
+    .offcanvas .offcanvas-body nav ul a:hover {
+      background-color: rgb(255, 255, 255);
+      font-weight: bold;
+
+    }
+
+
+
+
+</style>
+
+<main class="mt-1 pt-2 ">
+    <div class="container-fluid">
+        <div class="row pt-2 px-2 mt-5">
+
+            <div class="col-md-6">
+                <h4 class="datatable-heading"> Panchayath List</h4>
+            </div>
+
+            {% if request.user.user_type == "Admin" or request.user.is_superuser %}
+            <div class="col-md-6 text-end">
+                <a href="{% url 'add_panchayath' %}" >
+                    <button class="btn add-button shadow" type="button">
+                        <i class="bi bi-plus-square pe-2 fw-bold"></i>Add Panchayath
+                    </button>
+                </a>
+            </div>
+            {% endif %}
+
+        </div>
+
+
+        <!-- new table start here -->
+        <div class="row">
+            <div class="col-md-12 mb-3 mt-3 text-center px-3">
+                <div class="card card-datatable shadow-lg text-secondary">
+                    <div class="card-body d-flex-column table-card">
+                        <div class="table-responsive py-4 text-start">
+                            <table id="dataTable" class="table text-secondary data-table-1" style="width: 100%
+                            ">
+                                <thead>
+                                <tr>
+                                    <th style="text-align:center;">Sl.No</th>
+                                    <th style="text-align:center;">Name</th>
+                                    <th style="text-align:center;">District</th>
+                                    <th style="text-align:center;">Phone</th>
+                                    <th style="text-align:center;">Email</th>
+                                   
+                                    <th style="text-align:center;">Actions</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for data in panchayath_list %}
+                                <tr>
+                                    <td style="text-align:center;">{{forloop.counter}}</td>
+                                    <td style="text-align:center;">{{data.name}}</td>
+                                    <td style="text-align:center;">{{data.district}}</td>
+                                    <td style="text-align:center;">{{data.Phone}}</td>
+                                    <td style="text-align:center;">{{data.email}}</td>
+                                  
+                                    <td>
+                                     
+                                        {% if request.user.user_type == 'Panchayath' or request.user.is_superuser %}
+                                        <a href="{% url 'edit_panchayath' data.Panchayath_id %}">
+                                            <button title="edit" type="button" class="btn edit-button text-white">
+                                                <i class="fa-solid fa-pen-nib"></i>
+                                            </button>
+                                        </a>
+
+                                        <button title="delete" type="button" class="btn delete-button-table"
+                                                data-bs-toggle="modal" data-bs-target="#exampleModal"
+                                                id="{{data.Panchayath_id}}" onclick="return f1(this)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {%endfor%}
+
+                                </tbody>
+                                <tfoot>
+                                <!--
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                                -->
+                                </tfoot>
+                            </table>
+                            <!--buttons-->
+                            <div class="row mt-3 mt-3">
+                                <div class="col-12 text-end">
+                                    <input type="button" class="btn back-button btn-sm me-md-2 shadow mb-2"
+                                           value="Back" onClick="javascript:history.go(-1);">
+                                    <a class="btn back-button btn-sm me-md-2 shadow mb-2"
+                                       href="{% url 'home' %}"> Back to Dashboard </a>
+
+                                </div>
+                            </div>
+                            <!--buttons end-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<!-- Modal -->
+<div class="modal fade mt-5" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content text-center">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Delete<i
+                        class="fa-solid fa-trash ps-2"></i></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Your selected item will be permanently deleted!
+            </div>
+            <div class="modal-footer">
+                <form role="form" action="{%url 'delete_panchayath'%}" method="get" id="form_confirm_modal">
+                    {% csrf_token %}
+                    <input type="hidden" id="delete_id" name="delete_id">
+                    <button type="button" class="btn add-button fw-bold" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn delete-button fw-bold"
+                            data-bs-dismiss="modal">Delete
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!--end delete modal-->
+
+<style type="text/css" media="print">
+    * {
+      display: none;
+    }
+
+
+
+
+</style>
+<script>
+        function f1(c){
+    document.getElementById("delete_id").value = c.id;
+
+}
+
+
+
+
+</script>
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

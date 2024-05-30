@@ -1,0 +1,1226 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+  <script>
+    $(document).ready(function () {
+      $('select').css('color', '#000000');
+      document.querySelector('input[type="text"]').style.color = "#000000";
+    });
+  </script>
+
+
+  <style>
+    .view-but-div {
+      padding: 0 10% 0 0;
+    }
+
+    .view-button:hover {
+      background-color: #17B169;
+      border: none;
+      transition: .5s;
+      border-color: white;
+    }
+
+    .edit-button:hover {
+      background-color: #FFC72C;
+      border: none;
+      transition: .5s;
+      border-color: white;
+    }
+
+
+    .delete-button:hover {
+      background-color: #E52B50;
+      border: none;
+      transition: .5s;
+      border-color: white;
+    }
+
+
+    .add-button {
+      background-color: #17B169;
+      color: white;
+
+    }
+
+    .add-button:hover {
+      background-color: #29b76c;
+      color: white;
+
+    }
+
+    .back-button {
+      background-color: #3a87c5;
+      border: none;
+      color: white;
+    }
+
+    .back-button:hover {
+      background-color: #007FFF;
+      border: none;
+      color: white;
+    }
+
+    .table-card {
+      font-size: .9em;
+    }
+
+    .offcanvas .offcanvas-body nav ul a:hover {
+      background-color: rgb(255, 255, 255);
+      font-weight: bold;
+
+    }
+  </style>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+ <main class="mt-1 pt-2 ">
+        <div class="container-fluid">
+              <!-- <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link active tabs" id="home-tab" data-bs-toggle="tab" data-bs-target="#home-tab-pane" type="button" role="tab" aria-controls="home-tab-pane" aria-selected="true"><i class="fa-solid fa-bars me-2 tab-icon px-2 shadow"></i>Main Dashboard</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link tabs" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false"><i class="fa-solid fa-cart-shopping me-2 tab-icon px-2 shadow"></i>Picker Dashboard</button>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <button class="nav-link tabs" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false"><i class="fa-solid fa-user-gear me-2 tab-icon px-2 shadow"></i>Service Dashboard</button>
+                  </li>
+              </ul> -->
+
+              <div class="tab-content" id="myTabContent">
+                <!--main dashboard-->
+                <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+                   <div class="row mt-5 mb-5 text-center">
+                    <h4 class=" fw-bold"><span class="heading-order-statistic shadow"><i class="fa-solid fa-bag-shopping me-3 summary-table1-icons "></i>Order statistics<span></h4>
+                   </div>
+
+                  <!--card rectangle-->
+                  <!--new recatngular card by ss-->
+                  <div class="row pb-5 mt-4">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3 ">
+                      <div class="card rectangular-card  count-card text-center h-100 " >
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-phone icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+
+                          <h5 class=" card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{via_direct_count}}<i class=" delivered-icon counter-round-cad-icon px-3 fa-phone fa-solid position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow "></i></h5>
+
+                          <p class="delivered card-text fw-bold card-description card-p mt-5 shadow">Via Direct</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card  count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-brands fa-app-store-ios icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon ">
+
+
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{via_app_count}}<i class="collections-icon counter-round-cad-icon px-3 fa-brands fa-app-store-ios position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="collections card-text fw-bold card-description card-p mt-5 shadow">Via app </p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3 ">
+                      <div class="card rectangular-card count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-users icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon ">
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{via_staff_count}}<i class="collections-icon counter-round-cad-icon px-3 fa-solid fa-users position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="collections card-text fw-bold card-description card-p mt-5 shadow">Via staffs</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card count-card text-center h-100  ">
+                         <!--bg icon-->
+                         <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-down-long icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon ">
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow bg-pill rounded-pill">76<i class="dues-icon counter-round-cad-icon px-3  fa-solid fa-down-long position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="dues card-text fw-bold card-description card-p mt-5 shadow">Dues</p>
+                            <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end new recatangular card by ss-->
+
+                  <!--3 columns of table containing cards-->
+
+                  <div class="row ">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 colxl-4 h-100 mb-5">
+                      <p class="table-1-p fw-bold card-text text-center three-tables-head shadow bg-transparent rounded-pill py-1"><i class="fs-4 counter-round-cad-icon px-2 fa-solid fa-rectangle-list summary-table1-icons"></i>SUMMARY</p>
+                      <div class="card" >
+                        <ul class="list-group summary-ul">
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Pending
+                            <span class="badge table1-card-count ">{{pending_count}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Cancelled
+                            <span class="badge table1-card-count ">{{cancelled_count}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Confirmed
+                            <span class="badge table1-card-count ">{{confirmed_count}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Items collected
+                            <span class="badge table1-card-count ">{{ite_collected_c}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Handover
+                            <span class="badge table1-card-count ">{{handover_c}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            In progress
+                            <span class="badge table1-card-count ">{{inprogress_c}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Ready for delivery
+                            <span class="badge table1-card-count ">{{readyfordelivery_c}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Despatch
+                            <span class="badge table1-card-count ">{{transit_c}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Undelivered
+                            <span class="badge table1-card-count ">{{undeliverd_c}}</span>
+                          </li>
+                          <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Delivered
+                            <span class="badge table1-card-count ">{{deliverd_c}}</span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 colxl-8 h-100">
+                      <p class="table-1-p fw-bold card-text text-center three-tables-head shadow bg-transparent rounded-pill py-1"><i class="fs-4 counter-round-cad-icon px-2 fa-regular fa-calendar-days summary-table1-icons "></i>Date (default:Today)</p>
+                      <div class="row text-center py-2">
+                        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray   count-card text-center h-100   ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md">{{today_all_order_c}}</h5>
+                                   
+                                  <p class="delivered card-text fw-bold card-description border-radius-md shadow">Orders</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md ">{{today_cancelled_order_c}}</h5>
+                                   
+                                  <p class="dues card-text fw-bold card-description border-radius-md  shadow">Cancelled</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                              <div class="card-body px-2  py-5">
+                                <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md ">{{today_delivered_order_c}}</h5>
+                                 
+                                <p class="delivered card-text fw-bold card-description  border-radius-md shadow">Delivered</p>
+                                  <!--
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                -->
+                              </div>
+                            </div></div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count count-inner-shadow bg-pill border-radius-md">{{today_via_direct_c}}</h5>
+                                   
+                                  <p class="intransit card-text fw-bold card-description border-radius-md  shadow">Via Direct</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md">{{today_via_staff_c}}</h5>
+                                   
+                                  <p class="intransit card-text fw-bold card-description border-radius-md  shadow">Via Staffs</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <p class="table-1-p fw-bold card-text text-center three-tables-head shadow bg-transparent rounded-pill py-1 mt-5 "><i class="fs-4 counter-round-cad-icon px-2 fa-regular fa-calendar-days summary-table1-icons "></i>Date (default:This month)</p>
+                      <div class="row text-center py-3">
+                        <div class="row row-cols-2 row-cols-lg-5 g-2 g-lg-3">
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card px-2  bg-dark-gray   count-card text-center h-100   ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md">{{curmonth_order_c}}</h5>
+                                   
+                                  <p class="delivered card-text fw-bold card-description border-radius-md shadow">Orders</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md">{{curmonth_cancelled_order_c}}</h5>
+                                   
+                                  <p class="dues card-text fw-bold card-description border-radius-md  shadow">Cancelled</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2"><div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                              <div class="card-body px-2  py-5">
+                                <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md">{{curmonth_delivered_order_c}}</h5>
+                                 
+                                <p class="delivered card-text fw-bold card-description border-radius-md  shadow">Delivered</p>
+                                  <!--
+                                <a href="#" class="btn btn-primary">Go somewhere</a>
+                                -->
+                              </div>
+                            </div></div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count count-inner-shadow bg-pill border-radius-md">{{curmonth_via_direct_order_c}}</h5>
+                                   
+                                  <p class="intransit card-text fw-bold card-description  border-radius-md shadow">Via Direct</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col p-0 mt-0">
+                            <div class="p-2">
+                              <div class="card  bg-dark-gray  count-card text-center h-100  ">
+                           
+                                <div class="card-body px-2  py-5">
+                                  <h5 class="card-title h2 card-count  count-inner-shadow bg-pill border-radius-md">{{curmonth_via_staff_order_c}}</h5>
+                                   
+                                  <p class="intransit card-text fw-bold card-description border-radius-md  shadow">Via Staffs</p>
+                                    <!--
+                                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                                  -->
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end of 3 columns of table containing cards-->
+                   <!--chart section 1-->
+                   <div class="row my-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                        <div class="card chartbg text-center h-100">
+                            <h5 class="card-count card-title my-3">Order Type</h5>
+                            <div class="card-body">
+                                <!--chart-->
+                                <div class="chart1div">
+                                    <canvas class="chart1" id="myChart5"></canvas>
+
+                                </div>
+                                <!--chart end-->
+
+                            </div>
+
+                          </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                        <div class="card chartbg text-center h-100">
+                            <h5 class="card-count card-title my-3">Staff vs Orders</h5>
+                            <div class="card-body bar-card">
+                                <!--chart-->
+                                <div>
+                                    <canvas  id="myChart6"></canvas>
+
+                                  </div>
+                                <!--cart end-->
+                            </div>
+                          </div>
+                   </div>
+
+                 </div>
+                 <!--end of chart section 1-->
+                </div>
+                <!--end of main dashboard-->
+
+                <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+
+                <!--dashboard for picker-->
+
+
+
+                <div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
+
+
+                     <!--cards section-->
+
+
+                  <div class="row pb-4 pt-3 mt-3 pt-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-2">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{pending_count}}<i class="collections-icon counter-round-cad-icon px-3 fa-solid fa-truck-fast position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="collections card-text fw-bold card-description card-p shadow">New pickup request</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-2">
+                      <div class="card count-card text-center rounded-pill h-100 ">
+                        <div class="card-body">
+
+
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{confirmed_count}}<i class="delivered-icon counter-round-cad-icon px-3 fa-solid fa-circle-check position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="delivered card-text fw-bold card-description card-p shadow">Confirmed pickups</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-2 ">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{received_orders_c}}<i class="counter-round-cad-icon px-3 fa-solid fa-cart-arrow-down position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="intransit card-text fw-bold card-description card-p shadow">Recieved orders</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-2">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{readyfordelivery_c}}<i class="delivered-icon counter-round-cad-icon px-3 fa-solid fa-truck-arrow-right position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="delivered card-text fw-bold card-description card-p shadow">Ready for delivery</p>
+                            <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--ends of cards section-->
+
+                  <!--card rectangle-->
+                  <!--new recatngular card by ss-->
+                  <div class="row pb-5 mt-2">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card  count-card text-center h-100  ">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-plane icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+
+                        <div class="card-body overlay-the-icon">
+
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{transit_c}}<i class="counter-round-cad-icon px-3 fa-plane fa-solid position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="intransit card-text fw-bold card-description card-p mt-5 shadow">In transit</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card  count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 bi bi-cart-check-fill icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+
+
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{deliverd_c}}<i class="delivered-icon counter-round-cad-icon px-3 bi bi-cart-check-fill position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="delivered card-text fw-bold card-description card-p mt-5 shadow">Delivered</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 bi bi-collection-fill icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{ite_collected_c}}<i class="collections-icon counter-round-cad-icon px-3 bi bi-collection-fill position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="collections card-text fw-bold card-description card-p mt-5 shadow">Collections</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card count-card text-center h-100">
+                         <!--bg icon-->
+                         <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-down-long icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">91<i class="dues-icon counter-round-cad-icon px-3  fa-solid fa-down-long position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="dues card-text fw-bold card-description card-p mt-5 shadow">Dues</p>
+                            <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end new recatangular card by ss-->
+                  <!--old card commented by ss
+                  <div class="row">
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular  text-center h-100">
+                        <div class=" card-body py-5 card-count h1">
+                          99<span class="ms-5"> <i class="counter-round-cad-icon fa-solid fa-eye pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex mx-auto">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular text-center  h-100">
+                        <div class="card-body py-5 card-count h1">
+                          2<span class="ms-5"><i class="counter-round-cad-icon fa-solid fa-cart-shopping pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex text-center mx-auto">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular text-center h-100 ">
+                        <div class="card-body py-5 card-count h1">
+                          88<span class="ms-5"> <i class="counter-round-cad-icon fa-solid fa-user pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex mx-auto ">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular text-center h-100">
+                        <div class="card-body py-5 card-count h1">
+                          24<span class="ms-5"> <i class="counter-round-cad-icon fa-regular fa-folder-open pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex mx-auto ">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                         -->
+                            <!--end of card rectangle-->
+                  <!--chart section 1-->
+                  <div class="row my-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                        <div class="card chartbg text-center h-100">
+                            <h5 class="card-count card-title my-3">Picker Expense This Month</h5>
+                            <div class="card-body">
+                                <!--chart-->
+                                <div class="chart1div">
+                                    <canvas class="chart1" id="myChart"></canvas>
+
+                                </div>
+                                <!--chart end-->
+
+                            </div>
+
+                          </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                        <div class="card chartbg text-center h-100">
+                            <h5 class="card-count card-title my-3">Orders</h5>
+                            <div class="card-body bar-card">
+                                <!--chart-->
+                                <div>
+                                    <canvas  id="myChart2"></canvas>
+
+                                  </div>
+                                <!--cart end-->
+                            </div>
+                          </div>
+                   </div>
+
+                 </div>
+                 <!--end of chart section 1-->
+                </div>
+
+                <!--end of picker dashboard-->
+
+                <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
+
+                <!--service dashboard-->
+                <div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
+                                             <!--cards section-->
+
+
+                  <div class="row pb-4 pt-3 mt-3 pt-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{received_orders_c}}<i class="collections-icon counter-round-cad-icon px-3 bi bi-bag-fill position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="collections card-text fw-bold card-description card-p shadow">Orders</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+
+
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{pending_count}}<i class="dues-icon counter-round-cad-icon px-3 fa-brands fa-buffer position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="dues card-text fw-bold card-description card-p shadow">Pending</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3 ">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{inprogress_c}}<i class="counter-round-cad-icon px-3 fa-solid fa-person-digging position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="intransit card-text fw-bold card-description card-p shadow">In process</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card count-card text-center rounded-pill h-100">
+                        <div class="card-body">
+                          <h5 class="card-title h2 card-count mb-3 rounded-pill count-inner-shadow bg-pill">{{deliverd_c}}<i class="delivered-icon counter-round-cad-icon px-3 fa-solid fa-circle-check position-absolute top-0 start-0 border-top-icon translate-middle-y shadow"></i></h5>
+
+                          <p class="delivered card-text fw-bold card-description card-p shadow">Processed</p>
+                            <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--ends of cards section-->
+
+                  <!--card rectangle-->
+                  <!--new recatngular card by ss-->
+                  <div class="row pb-5 mt-2">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3 ">
+                      <div class="card rectangular-card  count-card text-center h-100  ">
+                         <!--bg icon-->
+                         <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-truck-arrow-right icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{readyfordelivery_c}}<i class="delivered-icon counter-round-cad-icon px-3 fa-solid fa-truck-arrow-right position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="delivered card-text fw-bold card-description card-p mt-2 shadow">Ready for delivery</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card  count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-triangle-exclamation icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+
+
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{undeliverd_c}}<i class="dues-icon counter-round-cad-icon px-3 fa-solid fa-triangle-exclamation position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="dues card-text fw-bold card-description card-p mt-2 shadow">Undelivered</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3 ">
+                      <div class="card rectangular-card count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-envelope-circle-check icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{customer_complaints_count}}<i class="dues-icon counter-round-cad-icon px-3 fa-solid fa-envelope-circle-check position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="dues card-text fw-bold card-description card-p mt-2 shadow">Complaints</p>
+                          <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-3 col-xl-3 py-2 mb-3">
+                      <div class="card rectangular-card count-card text-center h-100">
+                        <!--bg icon-->
+                        <div class="position-absolute top-50 start-50 translate-middle  ">
+                          <i class="fade-bg-icon collections-icon counter-round-cad-icon px-2 fa-solid fa-truck-fast icon-size-bg"></i>
+                        </div>
+                        <!--end bg icon-->
+                        <div class="card-body overlay-the-icon">
+                          <h5 class="card-title h2 card-count mb-3 mt-5 count-inner-shadow rounded-pill bg-pill">{{pending_express_order_count}}<i class="dues-icon counter-round-cad-icon px-3  fa-solid fa-truck-fast position-absolute top-0 start-50 translate-middle fs-1  border-top-icon shadow"></i></h5>
+
+                          <p class="dues card-text fw-bold card-description card-p mt-2 shadow">Pending express orders</p>
+                            <!--
+                          <a href="#" class="btn btn-primary">Go somewhere</a>
+                          -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!--end new recatangular card by ss-->
+                  <!--old card commented by ss
+                  <div class="row">
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular  text-center h-100">
+                        <div class=" card-body py-5 card-count h1">
+                          99<span class="ms-5"> <i class="counter-round-cad-icon fa-solid fa-eye pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex mx-auto">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular text-center  h-100">
+                        <div class="card-body py-5 card-count h1">
+                          2<span class="ms-5"><i class="counter-round-cad-icon fa-solid fa-cart-shopping pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex text-center mx-auto">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular text-center h-100 ">
+                        <div class="card-body py-5 card-count h1">
+                          88<span class="ms-5"> <i class="counter-round-cad-icon fa-solid fa-user pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex mx-auto ">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                      <div class="card card-rectangular text-center h-100">
+                        <div class="card-body py-5 card-count h1">
+                          24<span class="ms-5"> <i class="counter-round-cad-icon fa-regular fa-folder-open pl-5"></i></span>
+                        </div>
+                        <div class="card-footer d-flex mx-auto ">
+                          View Details
+
+                          <span class="ms-auto">
+                            <i class="bi bi-chevron-right"></i>
+                          </span>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                         -->
+                            <!--end of card rectange-->
+                  <!--chart section 1-->
+                  <div class="row my-3">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                        <div class="card chartbg text-center h-100">
+                            <h5 class="card-count card-title my-3">Card title</h5>
+                            <div class="card-body">
+                                <!--chart-->
+                                <div class="chart1div">
+                                    <canvas class="chart1" id="myChart3"></canvas>
+
+                                </div>
+                                <!--chart end-->
+
+                            </div>
+
+                          </div>
+
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6 py-2">
+                        <div class="card chartbg text-center h-100">
+                            <h5 class="card-count card-title my-3">Processed Orders</h5>
+                            <div class="card-body bar-card">
+                                <!--chart-->
+                                <div>
+                                    <canvas  id="myChart4"></canvas>
+
+                                  </div>
+                                <!--cart end-->
+                            </div>
+                          </div>
+                   </div>
+
+                 </div>
+                 <!--end of chart section 1-->
+
+                </div>
+                <!--end of service dashboard-->
+              </div>
+            <!-- end of naw dashboard with 3 tabs-->
+
+
+        </div>
+    </main>
+
+        <script type="text/javascript">
+        function f1(c) {
+            document.getElementById("delete_id").value = c.id;
+        }
+        </script>
+        <script>
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+        </script>
+  </main>
+  <!--   Core JS Files   -->
+  <!-- <script src="static/js/core/bootstrap.min.js"></script> -->
+
+  <script src="static/js/core/popper.min.js"></script>
+  <script src="static/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="static/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="static/js/plugins/choices.min.js"></script>
+  <script src="static/js/multistep-form.js"></script>
+  <!-- Kanban scripts -->
+  <script src="static/js/plugins/dragula/dragula.min.js"></script>
+  <script src="static/js/plugins/jkanban/jkanban.js"></script>
+  <script src="static/js/plugins/chartjs.min.js"></script>
+  <script src="static/js/plugins/threejs.js"></script>
+  <script src="static/js/plugins/orbit-controls.js"></script>
+  <script>
+    $(".paginate_button.page-item.first,.paginate_button.page-item.last").hide();
+  </script>
+  <script>
+    if (document.getElementById('companies-name')) {
+      var element = document.getElementById('companies-name');
+      const example = new Choices(element);
+    }
+  </script>
+  <script>
+    if (document.getElementById('project-name')) {
+      var element = document.getElementById('project-name');
+      const example = new Choices(element);
+    }
+  </script>
+  <!-- dropdown search box required end -->
+  <script>
+    var win = navigator.platform.indexOf('Win') > -1;
+    if (win && document.querySelector('#sidenav-scrollbar')) {
+      var options = {
+        damping: '0.5'
+      }
+      Scrollbar.init(document.querySelector('#sidenav-scrollbar'), options);
+    }
+  </script>
+  <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="static/js/soft-ui-dashboard.minf2ad.js"></script>
+  <!--multiselection-->
+  <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+  <style type="text/css" media="print">
+    * {
+      display: none;
+    }
+  </style>
+  <!--font awesome link addes by ss-->
+  <script src="https://kit.fontawesome.com/22751d2ca8.js" crossorigin="anonymous"></script>
+    <!--AOS js link by ss-->
+  <!--chart.js by ss-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js" integrity="sha512-mlz/Fs1VtBou2TrUkGzX4VoGvybkD9nkeXWJm3rle0DPHssYYx4j+8kIS15T78ttGfmOjH0lLaBXGcShaVkdkg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <!--first chart-->
+  <script>
+    var initialLabel = {{exp_type|safe}};
+    var initialData =  {{expens_count|safe}};
+
+    const ctx = document.getElementById('myChart');
+
+    var myChart = new Chart(ctx, {
+      type: 'pie',
+      data: {
+        labels: initialLabel,
+
+        datasets: [{
+          label: '# of Votes',
+          data: initialData,
+          borderWidth: 1,
+
+          backgroundColor:[
+            '#FA9C7F',
+            '#99A9C3',
+            '#9FA065',
+            '#86A987',
+            '#DE7C58',
+            '#E0AF66',
+            ]
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <!--second chart-->
+  <script>
+    var initialLabel2 = ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    var initialData2 =  {{picker_month_wise_oredr_count}};
+    const btx = document.getElementById('myChart2');
+
+    var myChart2 = new Chart(btx, {
+      type: 'bar',
+      data: {
+        labels: initialLabel2,
+        datasets: [{
+          label: 'Orders',
+          data: initialData2,
+          borderWidth: 1,
+
+          backgroundColor:[
+            '#FA9C7F',
+            '#99A9C3',
+            '#9FA065',
+            '#86A987',
+            '#DE7C58',
+            '#E0AF66',
+            '#906290',
+            '#B793D1',
+            '#8888C2',
+            '#94A594',
+            '#B9B977',
+            '#BA995B',
+            ]
+
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              boxWidth:0
+            }
+          }
+
+        }
+      }
+    });
+  </script>
+  <!--end of second chart-->
+   <!--third chart-->
+   <script>
+    const ztx = document.getElementById('myChart3');
+
+    new Chart(ztx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+        datasets: [{
+          label: '# of Votes',
+          data: [12, 19, 3, 5, 2, 3],
+          borderWidth: 1,
+          backgroundColor:[
+            '#FA9C7F',
+            '#99A9C3',
+            '#9FA065',
+            '#86A987',
+            '#DE7C58',
+            '#E0AF66',
+            ]
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <!--4th chart-->
+  <script>
+    const ytx = document.getElementById('myChart4');
+
+    new Chart(ytx, {
+      type: 'bar',
+      data: {
+        labels: ['Jan', 'Feb', 'March', 'April', 'May', 'June','July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        datasets: [{
+          label: 'Processed Orders',
+          data: {{processed_oredr_count}},
+          borderWidth: 1,
+          backgroundColor:[
+            '#FA9C7F',
+            '#99A9C3',
+            '#9FA065',
+            '#86A987',
+            '#DE7C58',
+            '#E0AF66',
+            ]
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              boxWidth:0
+            }
+          }
+
+        }
+      }
+    });
+  </script>
+  <!--5th chart main dash-->
+  <script>
+    const stx = document.getElementById('myChart5');
+
+    new Chart(stx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Normal','Express','Urgent'],
+        datasets: [{
+          label: '# of Votes',
+          data: {{order_type_count}},
+          borderWidth: 1,
+          backgroundColor:[
+            '#FA9C7F',
+            '#99A9C3',
+            '#9FA065',
+            '#86A987',
+            '#DE7C58',
+            '#E0AF66',
+            ]
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
+  </script>
+  <!--end of 5th chart main dash-->
+  <!--6th chart main dash-->
+  <script>
+    const ttx = document.getElementById('myChart6');
+
+    new Chart(ttx, {
+      type: 'bar',
+      data: {
+        labels: {{staffs|safe}},
+        datasets: [{
+          label: '# orders',
+          data: {{staff_vs_order_c}},
+          borderWidth: 1,
+          backgroundColor:[
+            '#FA9C7F',
+            '#99A9C3',
+            '#9FA065',
+            '#86A987',
+            '#DE7C58',
+            '#E0AF66',
+            ]
+
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        },
+        plugins:{
+          legend:{
+            labels:{
+              boxWidth:0
+            }
+          }
+
+        }
+      }
+    });
+  </script>
+  <!--end of 6th chart main dash-->
+  <!--end of chart.js by ss-->
+
+
+{% endblock %}
+
