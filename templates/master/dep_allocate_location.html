@@ -1,0 +1,252 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="mt-3 pt-3">
+    <div class="container-fluid">
+        <div class="row text-center text-capitalize fw-bold add-products-details-heaing">
+            <div id="success-message" class="alert alert-success success text-center" style="display:none; color: green; font-size: 20px;"></div>
+            <h3>Allocate Department</h3>
+        </div>
+        <form enctype="multipart/form-data" role="form" method="post"
+              class="row g-3 shadow border border-radius-xl m-auto px-2 mx-2 mb-5 pb-3 pt-2 border-light
+            text-secondary form-letter">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="form-group required" >
+                    <label class='control-label'>Select District</label>
+                    <select name="branches_name" id="dis_id" class="form-control" required>
+                        <option value="">----------</option>
+                        {% for dis in dis_obj %}
+                        <option value="{{dis.district_id}}">{{dis.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Select Governing Bbody</label>
+                    <select name="gbody" id="gbodyid" class="form-control"
+                    onclick="branch_main_service_data();"required>
+                        <option >---------</option>
+                        <option value="panchayath">Panchayath</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="muncipality">Muncipality</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Select Panchayath/muncipality/corporation</label>
+                    <select name="gname" id="sub_service_id" class="form-control"  onclick="dep_data();" required>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="table-responsive mt-4" id="table_id">
+                <table class="table align-items-center mb-0">
+                    <thead>
+                    <tr>
+                        <th class="text-uppercase  text-xxs font-weight-bolder heading_width">Select</th>
+                        <th class="text-uppercase  text-xxs font-weight-bolder ps-2">Department</th>
+                    </tr>
+                    </thead>
+
+                    <tbody id="table_idd" class="align-items-center mb-0">
+
+                    </tbody>
+
+                </table>
+            </div>
+
+            <div class="col-11 text-end mt-4">
+                <input type="submit" class="btn add-button btn-sm shadow me-2 mb-2" value="Submit"
+                       onclick="service_data();">
+                <input type="button" class="btn back-button btn-sm me-md-2 shadow mb-2"
+                       value="Back" onClick="javascript:history.go(-1);">
+                <a class="btn back-button btn-sm me-md-2 shadow mb-2"
+                   href="{% url 'home' %}"> Back to Dashboard </a>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script>
+    function branch_main_service_data() {
+        let gbodyid = document.getElementById("gbodyid").selectedOptions[0].value;
+        
+        let districtid = document.getElementById("dis_id").selectedOptions[0].value;
+        console.log(districtid)
+
+       
+    
+        $.ajax({
+            type: "get",
+            url: "{% url 'select_government' %}",
+            data: {'gbodyid': gbodyid,'dis_id':districtid},
+            datatype: "json",
+            success: function (response) {
+                console.log(response, "kkk");
+                let dropdown = $('#sub_service_id');
+                dropdown.empty();
+                dropdown.append('<option value="">' + '----------' + '</option>');
+                $.each(response.data, function(i, value) {
+                    dropdown.append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    </script>
+
+<script>
+    function dep_data(){
+
+        if($('#table_id').length){
+            $('#table_idd').empty();
+            }
+
+   
+
+    $.ajax({
+        type: "get",
+        url: "{% url 'get_dep_data' %}",
+        
+        datatype:"json",
+        success: function (data)
+             {
+             console.log(data)
+                var j = 1;
+                $.each(data.dep_obj, function(i, data){
+                var row = ''
+                     $("#table_idd").append('<tr>'+
+                        '<td><input type="checkbox" id="'+ data.department_id +'"  name="cart_checkbox"></td>'+
+                        '<td>'+ data.department_name +'</td>'+
+                    '</tr>');
+                j++;
+                console.log(j,"::j")
+                })  ;
+             }
+         });
+    }
+
+</script>
+<script>
+    function getSelectedDepartments() {
+            var selectedDepartments = [];
+
+            $('#table_idd tr').each(function () {
+                var $checkbox = $(this).find('input[type="checkbox"]');
+                if ($checkbox.is(':checked')) {
+                    var department_id = $checkbox.attr('id');
+                    var department_name = $(this).find('td').eq(1).text();
+                    selectedDepartments.push({
+                        department_id: department_id,
+                        department_name: department_name
+                    });
+                }
+            });
+
+            return selectedDepartments;
+        }
+
+        function service_data() {
+            let gbodyid = document.getElementById("gbodyid").selectedOptions[0].value;
+        
+            let districtid = document.getElementById("dis_id").selectedOptions[0].value;
+            let pan_mun_cor_id = document.getElementById("sub_service_id").selectedOptions[0].value;
+            var selectedDepartments = getSelectedDepartments();
+            console.log(selectedDepartments)
+            var csrfToken = "{{ csrf_token }}";
+
+            $.ajax({
+                type: "post",
+
+                url: "{% url 'allocate_department' %}", 
+                headers: {
+            "X-CSRFToken": csrfToken 
+                 }, 
+                data: JSON.stringify({ 
+                'selectedDepartments': selectedDepartments, 
+                'gbodyid': gbodyid,
+                 'districtid': districtid, 
+                'pan_mun_cor_id':pan_mun_cor_id}),
+                contentType: "application/json",
+                success: function(response) {
+        let successMessageDiv = document.getElementById('success-message');
+        if (response.status === 'success') {
+                successMessageDiv.textContent = response.message;
+                successMessageDiv.style.display = 'block';
+
+                // Hide the message after 4 seconds
+                setTimeout(function() {
+                    successMessageDiv.style.display = 'none';
+                    location.reload(); // Refresh the page after hiding the message
+                }, 4000); // Hide after 4 seconds
+            } else {
+                errorMessageDiv.textContent = response.message;
+                errorMessageDiv.style.display = 'block';
+            }
+        
+    },
+    error: function(xhr, status, error) {
+        // Handle error
+    }
+            });
+        }
+
+        // Call dep_data to populate the table when the page loads
+        // $(document).ready(function() {
+        //     dep_data();
+        // });
+
+</script>
+
+<!-- <script>
+
+function service_data() {
+        var selectedDepartments = [];
+        $('#table_idd tr').each(function() {
+            var checkbox = $(this).find('input[type="checkbox"]');
+            if (checkbox.is(':checked')) {
+                var departmentId = checkbox.attr('id');
+                var departmentName = $(this).find('td:nth-child(2)').text();
+                selectedDepartments.push({
+                    department_id: departmentId,
+                    department_name: departmentName
+                });
+            }
+        });
+        console.log(selectedDepartments)
+    } -->
+
+    <!-- // function sendSelectedDepartments() {
+    //     var selectedDepartments = service_data();
+    //     console.log(selectedDepartments);  // For debugging purposes
+
+    //     $.ajax({
+    //         type: "post",
+    //         url: "{% url 'allocate_dep' %}",
+    //         data: {'selectedDepartments':selectedDepartments},
+    //         contentType: "application/json",
+    //         success: function(response) {
+    //             console.log("Data sent successfully:", response);
+    //         },
+    //         error: function(error) {
+    //             console.error("Error sending data:", error);
+    //         }
+    //     });
+    
+
+    // Call dep_data on page load or as needed
+    // $(document).ready(function() {
+    //     dep_data();
+    // }); -->
+
+<!-- </script> -->
+
+
+
+{% endblock %}

@@ -45,7 +45,7 @@
            aria-hidden="true" id="iconSidenav"></i>
 
         <a class="navbar-brand m-0" href="#">
-            <img id="myImage" src="{% static 'images/golden.jpeg' %}" class="navbar-brand-img" alt="main_logo"
+            <img id="myImage" src="{% static 'images/mobiz.png' %}" class="navbar-brand-img" alt="main_logo"
                  style="width:300px;height:80px">
             <span class="ms-1"></span>
         </a>
@@ -74,7 +74,7 @@
                 </a>
                 <div class="collapse" id="layout">
                     <ul class="navbar-nav ps-3">
-                        {% if request.user.user_type == 'Admin' or request.user.is_superuser %}
+                       
                         <li>
                             <a href="{% url 'panchayath_list' %}" class="nav-link px-3">
                                 <span class="me-2"></span>
@@ -95,17 +95,23 @@
                         </li>
 
                        
-                        {% endif %}
+                    
                         <li>
-                            <a href="" class="nav-link px-3">
+                            <a href="{% url 'ward_list' %}" class="nav-link px-3">
                                 <span class="me-2"></span>
-                                <span>Branch</span>
+                                <span>ward</span>
                             </a>
                         </li>
                         <li>
-                            <a href="" class="nav-link px-3">
+                            <a href="{% url 'dep_list' %}" class="nav-link px-3">
                                 <span class="me-2"></span>
-                                <span>Branch Locations</span>
+                                <span>Departments</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'allocate_dep' %}" class="nav-link px-3">
+                                <span class="me-2"></span>
+                                <span>Departments Allocation</span>
                             </a>
                         </li>
                     </ul>

@@ -13,7 +13,7 @@ from django.contrib.auth.hashers import make_password, check_password
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-
+import json
 
 # Create your views here.
 def home(request):
@@ -286,3 +286,244 @@ def muncipality_delete(request):
     
     rec.delete()
     return redirect('muncipality_list')
+
+
+def select_government(request):
+    gbody = request.GET.get('gbodyid')
+    dis=request.GET.get('dis_id')
+    print(dis,"dis")
+    print("hisree", gbody)
+    if gbody == "panchayath":
+        rec = list(Panchayath.objects.filter(district=dis).values('Panchayath_id', 'name'))
+    elif gbody == "muncipality":
+        breakpoint()
+        rec = list(Muncipality.objects.filter(district=dis).values('muncipality_id', 'name'))
+    else:
+        rec = list(Corporation.objects.filter(district=dis).values('corporation_id', 'name'))
+
+    data = [{'id': item['Panchayath_id'] if gbody == 'panchayath' else item['muncipality_id'] if gbody == 'muncipality' else item['corporation_id'],
+             'name': item['name']} for item in rec]
+    print(data,"data")
+    return JsonResponse({'data': data})
+    
+
+def ward_Adding(request):
+    form = Ward_Add_Form
+    template_name = 'master/add_ward.html'
+    context = {'form': form}
+    gbody = request.POST.get('gbody')
+   
+    gname = request.POST.get('gname')
+  
+   
+    if request.method == 'POST':
+        form = Ward_Add_Form(request.POST)
+        if form.is_valid():
+            data = form.save(commit=False)
+            if gbody == "panchayath":
+                panc_id=Panchayath.objects.get(Panchayath_id=gname)
+                
+                data.panchayath=panc_id
+                data.governing_body='Panchayath'
+            elif gbody == 'corporation':
+                cor_id=Corporation.objects.get(corporation_id=gname)
+
+                data.corporation=cor_id
+                data.governing_body='Corporation'
+            else:
+                mun_id=Muncipality.objects.get(muncipality_id=gname)
+                data.muncipality=mun_id
+                data.governing_body='Muncipality'
+
+            data.save()
+            messages.success(request, 'Ward Successfully Added.', 'alert-success')
+            return redirect('ward_list')
+        else:
+            print(form.errors)
+            messages.success(request, 'Data is not valid.', 'alert-danger')
+            context = {'form': form}
+            return render(request, template_name, context)
+    else:
+        return render(request, template_name, context)
+
+    
+  
+
+def ward_list(request):
+    template_name = 'master/ward_list.html'
+    ward_list = Ward.objects.all()
+    context = {'ward_list': ward_list}
+    return render(request, template_name, context)
+
+
+def ward_edit(request, ward_id):
+   
+    try:
+        ward = Ward.objects.get(ward_id=ward_id)
+    except Ward.DoesNotExist:
+        messages.error(request, 'Ward not found.', 'alert-danger')
+        return redirect('ward_list')
+
+    if request.method == 'POST':
+        form = Ward_Add_Form(request.POST, instance=ward)
+        gbody = request.POST.get('gbody')
+        gname = request.POST.get('gname')
+
+        if form.is_valid():
+            data = form.save(commit=False)
+            if gbody == "panchayath":
+                try:
+                    panc_id = Panchayath.objects.get(Panchayath_id=gname)
+                    data.panchayath = panc_id
+                    data.governing_body = 'Panchayath'
+                except Panchayath.DoesNotExist:
+                    messages.error(request, 'Panchayath not found.', 'alert-danger')
+                    return render(request, 'master/edit_ward.html', {'form': form})
+            elif gbody == 'corporation':
+                try:
+                    cor_id = Corporation.objects.get(corporation_id=gname)
+                    data.corporation = cor_id
+                    data.governing_body = 'Corporation'
+                except Corporation.DoesNotExist:
+                    messages.error(request, 'Corporation not found.', 'alert-danger')
+                    return render(request, 'master/edit_ward.html', {'form': form})
+            else:
+                try:
+                    mun_id = Muncipality.objects.get(muncipality_id=gname)
+                    data.muncipality = mun_id
+                    data.governing_body = 'Muncipality'
+                except Muncipality.DoesNotExist:
+                    messages.error(request, 'Muncipality not found.', 'alert-danger')
+                    return render(request, 'master/edit_ward.html', {'form': form})
+
+            data.save()
+            messages.success(request, 'Ward Successfully Updated.', 'alert-success')
+            return redirect('ward_list')
+        else:
+            messages.error(request, 'Data is not valid.', 'alert-danger')
+            return render(request, 'master/edit_ward.html', {'form': form})
+    else:
+        form = Ward_Add_Form(instance=ward)
+        return render(request, 'master/edit_ward.html', {'form': form})
+
+def ward_delete(request):
+    print("hhh")
+    pk = request.GET.get('delete_id')
+    rec = Ward.objects.get(ward_id=pk)
+    
+    rec.delete()
+    return redirect('ward_list')
+
+
+def dep_list(request):
+    template_name = 'master/dep_list.html'
+    dep_list = Department.objects.all()
+    context = {'dep_list': dep_list}
+    return render(request, template_name, context)
+
+def department_add(request):
+    form = Dep_Adding_Form
+    template_name = 'master/dep_add.html'
+    context = {'form': form}
+    if request.method == 'POST':
+        form = Dep_Adding_Form(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.save()
+            messages.success(request, 'Department Successfully Added.', 'alert-success')
+            return redirect('dep_list')
+        else:
+            print(form.errors)
+            messages.success(request, 'Data is not valid.', 'alert-danger')
+            context = {'form': form}
+            return render(request, template_name, context)
+    else:
+        return render(request, template_name, context)
+def dep_edit(request, pk):
+    template_name = 'master/edit_dep.html'
+    ser_rec = Department.objects.get(department_id=pk)
+    form = Dep_Edit_Form(instance=ser_rec)
+    context = {'form': form}
+    if request.method == 'POST':
+        form = Dep_Edit_Form(request.POST, request.FILES, instance=ser_rec)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.save()
+            messages.success(request, 'Department Successfully Updated.', 'alert-success')
+            return redirect('dep_list')
+        else:
+            print(form.errors)
+            messages.success(request, 'Data is not valid.', 'alert-danger')
+            context = {'form': form}
+            return render(request, template_name, context)
+    else:
+        return render(request, template_name, context)
+    
+
+def dep_delete(request):
+    print("hhh")
+    pk = request.GET.get('delete_id')
+    rec = Department.objects.get(department_id=pk)
+    
+    rec.delete()
+    return redirect('dep_list')
+
+
+
+
+def allocate_dep_page(request):
+    template_name = 'master/dep_allocate_location.html'
+    dis_obj=District.objects.all().values('district_id','name')
+    context={'dis_obj':dis_obj}
+    return render(request, template_name,context)
+def allocate_dep(request):
+    template_name = 'master/dep_allocate_location.html'
+
+    try:
+        body_unicode = request.body.decode('utf-8')
+        body_data = json.loads(body_unicode)
+        
+        selected_departments = body_data.get('selectedDepartments', [])
+        gbody= body_data.get('gbodyid')
+        
+        districtid=body_data.get('districtid')
+        pan_mun_cor_id=body_data.get('pan_mun_cor_id')
+        
+        for department_id in selected_departments:
+           
+            if  gbody == "panchayath":
+                print("llll")
+                Department_Allocation.objects.create(
+                    panchayath= Panchayath.objects.get(Panchayath_id=pan_mun_cor_id),
+                    district=District.objects.get(district_id=districtid),
+                    deparment=Department.objects.get(department_id=department_id.get('department_id'))
+                )
+            if  gbody == "corporation":
+              
+                Department_Allocation.objects.create(
+                    muncipality= Corporation.objects.get(corporation_id=pan_mun_cor_id),
+                    district=District.objects.get(district_id=districtid),
+                    deparment=Department.objects.get(department_id=department_id.get('department_id'))
+                )
+            if  gbody == "muncipality":
+            
+                Department_Allocation.objects.create(
+                    muncipality= Muncipality.objects.get(muncipality_id=pan_mun_cor_id),
+                    district=District.objects.get(district_id=districtid),
+                    deparment=Department.objects.get(department_id=department_id.get('department_id'))
+                )
+        messages.success(request, 'Department Successfully Allocated.', 'alert-success')
+        return render(request, template_name)
+        
+    except Exception as e:
+        print(f"Error: {e}")
+        messages.error(request, 'Something went wrong, please try again later!', 'alert-danger')
+        return render(request, template_name)
+# ajax
+def get_dep_data(request):
+    if request.method == "GET":
+    
+        dep_obj = list(Department.objects.all().values('department_id','department_name'))
+      
+        dat = {'dep_obj': dep_obj}
+        return JsonResponse(dat)

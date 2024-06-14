@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<main class="mt-3 pt-3">
+    <div class="container-fluid">
+        <div class="row text-center text-capitalize fw-bold add-products-details-heaing">
+            <h3>Edit Ward</h3>
+        </div>
+        <form enctype="multipart/form-data" role="form" method="post"
+              class="row g-3 shadow border border-radius-xl m-auto px-2 mx-2 mb-5 pb-3 pt-2 border-light
+            text-secondary form-letter">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label' id="dis_id">District</label>
+                    {{ form.district }}
+                    {{ form.district.errors }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Select Governing Bbody</label>
+                    <select name="gbody" id="gbodyid" class="form-control"
+                    onclick="branch_main_service_data();"required>
+                        <option >---------</option>
+                        <option value="panchayath">Panchayath</option>
+                        <option value="corporation">Corporation</option>
+                        <option value="muncipality">Muncipality</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Select Panchayath/muncipality/corporation</label>
+                    <select name="gname" id="sub_service_id" class="form-control" required>
+                        <option value=""></option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'> Enter Name</label>
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'> Enter Phone</label>
+                    {{ form.Phone }}
+                    {{ form.Phone.errors }}
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group required">
+                    <label class='control-label'>Enter Email</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+            </div>
+
+           
+            <div class="col-11 text-end mt-4">
+                <input type="submit" class="btn add-button btn-sm shadow me-2 mb-2" value="Submit"
+                       onclick="service_data();">
+                <input type="button" class="btn back-button btn-sm me-md-2 shadow mb-2"
+                       value="Back" onClick="javascript:history.go(-1);">
+                <a class="btn back-button btn-sm me-md-2 shadow mb-2"
+                   href="{% url 'home' %}"> Back to Dashboard </a>
+            </div>
+        </form>
+    </div>
+</main>
+
+
+<script>
+    function branch_main_service_data() {
+        let gbodyid = document.getElementById("gbodyid").selectedOptions[0].value;
+        
+        let districtElement = document.getElementById('{{ form.district.id_for_label }}');
+        let districtid = districtElement ? districtElement.selectedOptions[0].value : '';
+
+       
+    
+        $.ajax({
+            type: "get",
+            url: "{% url 'select_government' %}",
+            data: {'gbodyid': gbodyid,'dis_id':districtid},
+            datatype: "json",
+            success: function (response) {
+                console.log(response, "kkk");
+                let dropdown = $('#sub_service_id');
+                dropdown.empty();
+                dropdown.append('<option value="">' + '----------' + '</option>');
+                $.each(response.data, function(i, value) {
+                    dropdown.append('<option value="' + value.id + '">' + value.name + '</option>');
+                });
+            },
+            error: function (error) {
+                console.log('Error:', error);
+            }
+        });
+    }
+    </script>
+
+<script>
+function sub_service_data(){
+    let branch_service = document.getElementById("main_service_id").selectedOptions[0].value
+
+    $.ajax({
+        type: "get",
+        url: "",
+        data: {'branch_service': branch_service},
+        datatype:"json",
+        success: function (data)
+             {
+             console.log(data);
+             $('#sub_service_id').find('option').remove();
+             $('#sub_service_id').append('<option value="">'+'----------'+'</option>')
+                    $.each(data.sub_category, function(i=1, value) {
+                    $('#sub_service_id').append('<option value="'+ value.sub_cat_id +'">'+ value.sub_cat_name +'</option>');
+                    });
+             }
+         });
+    }
+</script>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
